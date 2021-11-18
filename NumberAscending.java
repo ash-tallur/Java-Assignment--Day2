@@ -2,6 +2,7 @@
      ex:     i/p 613       o/p 136
              i/p 01020   o/p  00012 */
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class NumberAscending {
@@ -9,11 +10,66 @@ public class NumberAscending {
         //Taking the input from the user
         System.out.println("Enter the number of whose digits you want to sort in ascending- ");
         Scanner sc = new Scanner(System.in);
-        int inputnumber = sc.nextInt();
-        //Passing the input as argument to the method
-        ascendingDigits(inputnumber);
+        int inputNumber = sc.nextInt();
+        if(inputNumber ==0 || inputNumber<0){
+            System.out.println("The number cannot be zero or negative, please enter a larger number");
+        }else {
+            //Passing the input as argument to the method
+            ascendingDigits(inputNumber);
+        }
 
     }
+
+    // read num
+    // create array with digits in num
+    // sort array
+    // print array
+    static void ascendingDigits(int num){
+        // The given number is integer to find the length of the number converting it
+        // to String and finding the length
+        String temp = Integer.toString(num);
+
+        int numOfDigits = temp.length();
+        if(numOfDigits<=1){
+            System.out.println("Please enter more than one digit number");
+        }
+        else {
+            //Based on the length instantiating a integer array
+            int[] digitsArray = new int[numOfDigits];
+
+            // using for loop assigning the values to the array
+            for (int i = 0; i < numOfDigits; i++) {
+                //taking each character then getting the integer by
+                //subtracting the character with zero and assigning to array
+                digitsArray[i] = temp.charAt(i) - '0';
+            }
+
+//        for(int k =0;k<digitsArray.length;k++){
+//            System.out.println(digitsArray[k]);
+//        }
+
+            //sorting the array of digits
+            for (int l = 0; l < digitsArray.length; l++) {
+                for (int j = l + 1; j < digitsArray.length; j++) {
+                    int tempDigit = 0;
+                    if (digitsArray[l] > digitsArray[j]) {
+                        tempDigit = digitsArray[l];
+                        digitsArray[l] = digitsArray[j];
+                        digitsArray[j] = tempDigit;
+                    }
+                }
+            }
+            System.out.println("The sorted number ");
+            //printing the number using for loop
+            for (int m = 0; m < digitsArray.length; m++) {
+                System.out.print(digitsArray[m]);
+            }
+        }
+
+    }
+}
+
+  /*
     static void ascendingDigits(int number){
         //Considering the length of the number by using String's valueOf function
         int numberLength = String.valueOf(number).length();
@@ -49,5 +105,7 @@ public class NumberAscending {
             }
             System.out.println("The sorted number is " + sortedNum);
         }
-    }
-}
+    }*/
+
+
+
